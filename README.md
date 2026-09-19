@@ -56,6 +56,7 @@ SolarChargerController/
 │   ├── src/
 │   │   └── main.cpp      # Main firmware code with FreeRTOS tasks & FSM
 │   └── platformio.ini    # PlatformIO environment & dependency definitions
+├── legacy_v1/         --> Arduino C++ source code & Proteus simulation files
 ├── scripts/
 │   ├── monitor.py        # Python telemetry consumer client
 │   └── requirements.txt  # Python environment dependencies
