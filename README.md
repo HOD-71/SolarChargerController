@@ -1,5 +1,12 @@
 # ☀️ SolarChargerController (IIoT-Enabled Smart Solar MPPT/PWM Controller)
 
+![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?style=flat-square&logo=c%2B%2B)
+![FreeRTOS](https://img.shields.io/badge/FreeRTOS-v10-00878F?style=flat-square)
+![ESP32](https://img.shields.io/badge/ESP32-Dual--Core-E7352F?style=flat-square&logo=espressif)
+![Docker](https://img.shields.io/badge/Docker-Mosquitto-2496ED?style=flat-square&logo=docker)
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=flat-square&logo=python)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+
 An industrial-grade, multi-core solar charge controller firmware designed for **ESP32** utilizing **FreeRTOS** for concurrent task management, hardware-level thread safety via **Mutexes**, and **Finite State Machine (FSM)** charge logic. Telemetry is streamed over **MQTT/JSON** to a containerized Mosquitto broker for real-time monitoring and analytics.
 
 ---
