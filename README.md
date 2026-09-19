@@ -1,4 +1,6 @@
-Markdown
+
+
+```markdown
 # ☀️ SolarChargerController (IIoT-Enabled Smart Solar MPPT/PWM Controller)
 
 ![C++](https://img.shields.io/badge/C%2B%2B-17-blue.svg)
@@ -9,8 +11,6 @@ Markdown
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 An industrial-grade, multi-core solar charge controller firmware designed for **ESP32** utilizing **FreeRTOS** for concurrent task management, hardware-level thread safety via **Mutexes**, and **Finite State Machine (FSM)** charge logic. Telemetry is streamed over **MQTT/JSON** to a containerized Mosquitto broker for real-time monitoring and analytics.
-
-> 📌 **Legacy Note:** Looking for the initial basic Proteus simulation & Arduino prototype? Check out the [`v1.0-legacy`](https://github.com/HOD-71/SolarChargerController/tree/v1.0-legacy) branch.
 
 ---
 
@@ -33,22 +33,26 @@ graph TD
     end
 
     ESP32 -->|Wi-Fi / MQTT JSON| Docker["Docker Container: Mosquitto Broker"]
-    Docker --> Python["Python Telemetry Consumer (Analytics & Logs)"]
-✨ Key Features
-Concurrent Multi-Core Architecture: Task pinning on ESP32 cores using FreeRTOS (xTaskCreatePinnedToCore).
+    Docker --> Python["Python Telemetry Consumer"]
 
-Thread-Safe Telemetry: Access protection using FreeRTOS Mutexes (xSemaphoreTake / xSemaphoreGive).
+```
 
-Finite State Machine (FSM): Structured battery charging stages (BULK, ABSORPTION, FLOAT, FAULT).
+---
 
-Standardized IIoT Streaming: JSON payload formatting using ArduinoJson v7 sent to MQTT broker.
+## ✨ Key Features
 
-Containerized Infrastructure: Docker-ready Mosquitto MQTT Broker integration.
+* **Concurrent Multi-Core Architecture:** Task pinning on ESP32 cores using FreeRTOS (`xTaskCreatePinnedToCore`).
+* **Thread-Safe Telemetry:** Access protection using FreeRTOS Mutexes (`xSemaphoreTake` / `xSemaphoreGive`).
+* **Finite State Machine (FSM):** Structured battery charging stages (`BULK`, `ABSORPTION`, `FLOAT`, `FAULT`).
+* **Standardized IIoT Streaming:** JSON payload formatting using `ArduinoJson v7` sent to MQTT broker.
+* **Containerized Infrastructure:** Docker-ready Mosquitto MQTT Broker integration.
+* **Python Monitoring Client:** Real-time data subscriber featuring structured logging and state decoding.
 
-Python Monitoring Client: Real-time data subscriber featuring structured logging and state decoding.
+---
 
-🛠️ Project Structure
-Plaintext
+## 🛠️ Project Structure
+
+```text
 SolarChargerController/
 ├── firmware/
 │   ├── include/          # Header files and configurations
@@ -61,40 +65,62 @@ SolarChargerController/
 ├── .gitignore            # Git ignore rules
 ├── LICENSE               # MIT License
 └── README.md             # Project documentation
-🚀 Getting Started
-Prerequisites
-PlatformIO IDE (VS Code Extension)
 
-Docker Desktop installed and running
+```
 
-Python 3.8+
+---
 
-1. Launch MQTT Broker Infrastructure
+## 🚀 Getting Started
+
+### Prerequisites
+
+1. **PlatformIO IDE** (VS Code Extension)
+2. **Docker Desktop** installed and running
+3. **Python 3.8+**
+
+### 1. Launch MQTT Broker Infrastructure
+
 Run Eclipse Mosquitto using Docker:
 
-Bash
+```bash
 docker run -d --name mqtt-broker -p 1883:1883 eclipse-mosquitto
-2. Build & Flash Firmware
-Navigate to the firmware/ directory, update Wi-Fi & MQTT credentials in src/main.cpp, and flash your ESP32:
 
-Bash
+```
+
+### 2. Build & Flash Firmware
+
+Navigate to the `firmware/` directory, update Wi-Fi & MQTT credentials in `src/main.cpp`, and flash your ESP32:
+
+```bash
 cd firmware
 pio run --target upload
-3. Run Telemetry Monitor
+
+```
+
+### 3. Run Telemetry Monitor
+
 Install Python dependencies and execute the monitoring script:
 
-Bash
+```bash
 cd scripts
 pip install -r requirements.txt
 python monitor.py
-🗺️ Roadmap & Future Enhancements
-[ ] Hardware Watchdog Timer (WDT): Integration for self-healing against severe EMI lockups.
 
-[ ] ADC Calibration & Filtering: Software moving average filter to offset ESP32 ADC non-linearity.
+```
 
-[ ] Non-Volatile Storage (NVS): Storing Wi-Fi credentials and state logs across system restarts.
+---
 
-[ ] Grafana Dashboard: Visualizing long-term telemetry metrics over InfluxDB/Prometheus.
+## 🗺️ Roadmap & Future Enhancements
 
-📜 License
-Distributed under the MIT License. See LICENSE for more information.
+* [ ] **Hardware Watchdog Timer (WDT):** Integration for self-healing against severe EMI lockups.
+* [ ] **ADC Calibration & Filtering:** Software moving average filter to offset ESP32 ADC non-linearity.
+* [ ] **Non-Volatile Storage (NVS):** Storing Wi-Fi credentials and state logs across system restarts.
+* [ ] **Grafana Dashboard:** Visualizing long-term telemetry metrics over InfluxDB/Prometheus.
+
+---
+
+## 📜 License
+
+Distributed under the MIT License. See [`LICENSE`](https://www.google.com/search?q=LICENSE&utm_source=gemini) for more information.
+
+```
